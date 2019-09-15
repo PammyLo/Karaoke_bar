@@ -2,24 +2,25 @@ require('pry')
 
 class Guest
 
-attr_accessor :name, :age, :wallet, :fav_song
+attr_accessor :name, :age, :wallet, :fav_song, :bar_tab
 
   def initialize(name, age, wallet, fav_song="")
     @name = name
     @age = age
     @wallet = wallet
     @fav_song = fav_song
+    @bar_tab = 0
+
   end
 
   def pay(amount)
-    if @wallet >= amount
-      total = @wallet - amount
-      return total
-    else
-      return "Sorry, not enough cash to get in.."
-    end
+    return @wallet -= amount if @wallet >= amount
+    return "Sorry, not enough cash to get in.."
   end
 
 
+  def pay_tab
+      @wallet -= @bar_tab
+  end
 
 end

@@ -17,7 +17,7 @@ class GuestTest < MiniTest::Test
   end
 
   def test_pay_bar_tab
-    assert_equal(0, @guest_1.pay_tab)
+    assert_equal(50, @guest_1.pay_tab)
   end
 
 end

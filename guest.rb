@@ -19,8 +19,4 @@ attr_accessor :name, :age, :wallet, :fav_song, :bar_tab
   end
 
 
-  def pay_tab
-      @wallet -= @bar_tab
-  end
-
 end

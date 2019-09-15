@@ -10,7 +10,6 @@ class Bar
       {type: "beer", price: 3},
       {type: "soft_drink", price: 1}
     ]
-
   end
 
   def add_drinks(drinks)
@@ -35,16 +34,20 @@ class Bar
     return guest_found.bar_tab
   end
 
-  def add_to_tab(guest, drink_bought)
-    drink_found = @drinks.find {|d| d[:type] == drink_bought}
+  def add_to_tab(guest, drink_to_buy)
+    drink_found = @drinks.find {|d| d[:type] == drink_to_buy}
     guest_found = @bar_guests.find {|g| g == guest}
-    guest_found.bar_tab += drink_found[:price]
+    if guest_found.wallet >= guest_found.bar_tab + drink_found[:price]
+      guest_found.bar_tab += drink_found[:price]
+    else
+      return "Sorry, you can't afford another drink today."
+    end
   end
 
   def settle_tab(guest_to_pay)
     guest_found = @bar_guests.find {|g| g == guest_to_pay}
     @till += guest_found.bar_tab
-    @bar_guests.pay_tab
+    guest_found.wallet -= guest_found.bar_tab
   end
 
 

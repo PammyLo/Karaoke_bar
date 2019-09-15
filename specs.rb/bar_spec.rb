@@ -53,11 +53,17 @@ class BarTest < MiniTest::Test
     assert_equal(4, @bar.add_to_tab(@guest_1, "wine"))
   end
 
-  def test_guest_settle_tab
+  def test_guest_settle_tab__wallet_reduced
     @bar.add_guests(@bar_guests)
     @bar.add_to_tab(@guest_1, "wine")
-    assert_equal(4, @bar.settle_tab(@guest_1))
+    assert_equal(46, @bar.settle_tab(@guest_1))
   end
 
+  def test_guest_settle_tab__till_increased
+    @bar.add_guests(@bar_guests)
+    @bar.add_to_tab(@guest_1, "wine")
+    @bar.settle_tab(@guest_1)
+    assert_equal(4, @bar.till)
+  end
 
 end
